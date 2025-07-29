@@ -1,1 +1,2523 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Breath For Change - SkyVac Revolutionary Air Cleaning Technology
+    </title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;700;900&display=swap");
 
+      :root {
+        --primary-color: #4caf50;
+        --secondary-color: #2c5530;
+        --accent-color: #667eea;
+        --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --gradient-secondary: linear-gradient(45deg, #4caf50, #81c784);
+        --text-dark: #1a1a1a;
+        --text-light: #666;
+        --surface-color: #ffffff;
+        --surface-alt: #f8fafb;
+        --border-color: #e1e5e9;
+        --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.08);
+        --shadow-medium: 0 8px 40px rgba(0, 0, 0, 0.12);
+        --shadow-heavy: 0 20px 60px rgba(0, 0, 0, 0.2);
+        --border-radius: 16px;
+        --border-radius-lg: 24px;
+        --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        line-height: 1.7;
+        color: var(--text-dark);
+        overflow-x: hidden;
+        background: linear-gradient(
+          135deg,
+          #f8fafb 0%,
+          #ffffff 50%,
+          #f0f4f8 100%
+        );
+        scroll-behavior: smooth;
+      }
+
+      /* Enhanced smooth scrolling */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Custom cursor */
+      body {
+        cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="%234CAF50" opacity="0.7"/></svg>'),
+          auto;
+      }
+
+      a,
+      button {
+        cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5" fill="%23667eea" opacity="0.8"/></svg>'),
+          pointer;
+      }
+
+      /* Global animations */
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.05);
+          opacity: 0.8;
+        }
+      }
+
+      @keyframes slideInUp {
+        from {
+          opacity: 0;
+          transform: translateY(60px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-60px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes slideInRight {
+        from {
+          opacity: 0;
+          transform: translateX(60px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes fadeInScale {
+        from {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      /* Particle system background */
+      .particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      .particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: linear-gradient(45deg, #4caf50, #667eea);
+        border-radius: 50%;
+        animation: floatParticle 20s infinite linear;
+        opacity: 0.3;
+      }
+
+      @keyframes floatParticle {
+        0% {
+          transform: translateY(100vh) rotate(0deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.3;
+        }
+        90% {
+          opacity: 0.3;
+        }
+        100% {
+          transform: translateY(-100px) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      /* Enhanced Header */
+      .header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px) saturate(180%);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 0;
+        z-index: 1000;
+        transition: var(--transition);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+      }
+
+      .header.scrolled {
+        background: rgba(255, 255, 255, 0.98);
+        border-bottom: 1px solid var(--border-color);
+        box-shadow: var(--shadow-medium);
+      }
+
+      .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 1.5rem 2rem;
+        transition: var(--transition);
+      }
+
+      .logo {
+        font-family: "Orbitron", monospace;
+        font-size: 2rem;
+        font-weight: 900;
+        background: var(--gradient-primary);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-decoration: none;
+        position: relative;
+        transition: var(--transition);
+      }
+
+      .logo::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 3px;
+        background: var(--gradient-primary);
+        transition: width 0.4s ease;
+        border-radius: 2px;
+      }
+
+      .logo:hover::after {
+        width: 100%;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2.5rem;
+        align-items: center;
+      }
+
+      .nav-links li {
+        position: relative;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--text-dark);
+        font-weight: 500;
+        font-size: 1rem;
+        transition: var(--transition);
+        position: relative;
+        padding: 0.5rem 1rem;
+        border-radius: var(--border-radius);
+      }
+
+      .nav-links a::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--gradient-primary);
+        border-radius: var(--border-radius);
+        opacity: 0;
+        transform: scale(0.8);
+        transition: var(--transition);
+        z-index: -1;
+      }
+
+      .nav-links a:hover {
+        color: white;
+        transform: translateY(-2px);
+      }
+
+      .nav-links a:hover::before {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      /* Mobile menu toggle */
+      .menu-toggle {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        padding: 0.5rem;
+      }
+
+      .menu-toggle span {
+        width: 25px;
+        height: 3px;
+        background: var(--text-dark);
+        margin: 3px 0;
+        transition: var(--transition);
+        border-radius: 2px;
+      }
+
+      /* Enhanced Hero Section */
+      .hero {
+        height: 100vh;
+        background: linear-gradient(
+          135deg,
+          #667eea 0%,
+          #764ba2 50%,
+          #667eea 100%
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+            circle at 20% 80%,
+            rgba(120, 119, 198, 0.3) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 20%,
+            rgba(255, 119, 198, 0.3) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 40% 40%,
+            rgba(120, 200, 255, 0.2) 0%,
+            transparent 50%
+          );
+        animation: gradientShift 8s ease-in-out infinite;
+      }
+
+      @keyframes gradientShift {
+        0%,
+        100% {
+          background: radial-gradient(
+              circle at 20% 80%,
+              rgba(120, 119, 198, 0.3) 0%,
+              transparent 50%
+            ),
+            radial-gradient(
+              circle at 80% 20%,
+              rgba(255, 119, 198, 0.3) 0%,
+              transparent 50%
+            );
+        }
+        50% {
+          background: radial-gradient(
+              circle at 80% 80%,
+              rgba(120, 200, 255, 0.3) 0%,
+              transparent 50%
+            ),
+            radial-gradient(
+              circle at 20% 20%,
+              rgba(200, 119, 255, 0.3) 0%,
+              transparent 50%
+            );
+        }
+      }
+
+      .hero-content {
+        z-index: 2;
+        max-width: 900px;
+        padding: 0 2rem;
+        position: relative;
+      }
+
+      .hero h1 {
+        font-family: "Orbitron", monospace;
+        font-size: clamp(3rem, 8vw, 5.5rem);
+        font-weight: 900;
+        margin-bottom: 1.5rem;
+        opacity: 0;
+        animation: slideInUp 1.2s ease forwards;
+        background: linear-gradient(45deg, #ffffff, #f0f8ff, #ffffff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        position: relative;
+      }
+
+      .hero h1::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 4px;
+        background: linear-gradient(90deg, transparent, #4caf50, transparent);
+        border-radius: 2px;
+        animation: expandLine 1.5s ease 0.8s forwards;
+        transform-origin: center;
+        scale: 0;
+      }
+
+      @keyframes expandLine {
+        to {
+          scale: 1;
+        }
+      }
+
+      .hero-subtitle {
+        font-size: clamp(1.2rem, 3vw, 1.8rem);
+        margin-bottom: 3rem;
+        opacity: 0;
+        animation: slideInUp 1.2s ease 0.3s forwards;
+        font-weight: 400;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.95);
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .cta-group {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        opacity: 0;
+        animation: slideInUp 1.2s ease 0.6s forwards;
+      }
+
+      .cta-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 18px 36px;
+        background: linear-gradient(135deg, #4caf50, #45a049);
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: var(--transition);
+        box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cta-button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.8s;
+      }
+
+      .cta-button:hover::before {
+        left: 100%;
+      }
+
+      .cta-button:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 15px 40px rgba(76, 175, 80, 0.5);
+      }
+
+      .cta-secondary {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .cta-secondary:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.4);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Floating elements in hero */
+      .floating-element {
+        position: absolute;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .kite-float {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(45deg, #4caf50, rgba(255, 255, 255, 0.3));
+        border-radius: 50% 0 50% 0;
+        animation: float 6s ease-in-out infinite;
+        top: 20%;
+        right: 10%;
+        opacity: 0.7;
+        transform-origin: center;
+      }
+
+      .balloon-float {
+        width: 60px;
+        height: 90px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        animation: float 8s ease-in-out infinite reverse;
+        top: 30%;
+        left: 15%;
+        opacity: 0.6;
+      }
+
+      .particle-float {
+        width: 20px;
+        height: 20px;
+        background: radial-gradient(circle, #4caf50, transparent);
+        border-radius: 50%;
+        animation: float 4s ease-in-out infinite, rotate 10s linear infinite;
+        top: 60%;
+        right: 20%;
+        opacity: 0.5;
+      }
+
+      /* Enhanced Section styles */
+      .section {
+        padding: 120px 0;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        position: relative;
+      }
+
+      .section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 60px;
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          var(--primary-color),
+          transparent
+        );
+        opacity: 0.6;
+      }
+
+      .section-title {
+        text-align: center;
+        font-family: "Orbitron", monospace;
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        font-weight: 700;
+        margin-bottom: 4rem;
+        color: var(--text-dark);
+        position: relative;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: var(--transition);
+      }
+
+      .section-title.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: var(--gradient-primary);
+        border-radius: 2px;
+        animation: expandLine 1s ease forwards;
+        transform-origin: center;
+        scale: 0;
+      }
+
+      .section-title.visible::after {
+        animation: expandLine 1s ease 0.3s forwards;
+      }
+
+      /* Enhanced About Section */
+      .about {
+        background: linear-gradient(
+            135deg,
+            rgba(248, 250, 251, 0.8) 0%,
+            rgba(255, 255, 255, 0.9) 100%
+          ),
+          url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(76,175,80,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+        position: relative;
+        overflow: hidden;
+      }
+
+      .about::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -20%;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+          circle,
+          rgba(76, 175, 80, 0.05) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
+        animation: float 20s ease-in-out infinite;
+      }
+
+      .about-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6rem;
+        align-items: center;
+        position: relative;
+        z-index: 2;
+      }
+
+      .about-text {
+        opacity: 0;
+        transform: translateX(-30px);
+        transition: var(--transition);
+      }
+
+      .about-text.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .about-text h3 {
+        font-family: "Orbitron", monospace;
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        color: var(--secondary-color);
+        position: relative;
+      }
+
+      .about-text h3::before {
+        content: "";
+        position: absolute;
+        left: -20px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 4px;
+        height: 40px;
+        background: var(--gradient-primary);
+        border-radius: 2px;
+      }
+
+      .about-text p {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: var(--text-light);
+        margin-bottom: 2rem;
+      }
+
+      .about-visual {
+        background: var(--gradient-secondary);
+        height: 400px;
+        border-radius: var(--border-radius-lg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.2rem;
+        position: relative;
+        overflow: hidden;
+        box-shadow: var(--shadow-heavy);
+        opacity: 0;
+        transform: translateX(30px) scale(0.9);
+        transition: var(--transition);
+      }
+
+      .about-visual.visible {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+      }
+
+      .about-visual::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(
+            circle at 30% 30%,
+            rgba(255, 255, 255, 0.2) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 70% 70%,
+            rgba(255, 255, 255, 0.1) 0%,
+            transparent 50%
+          );
+        animation: shimmer 4s ease-in-out infinite;
+      }
+
+      @keyframes shimmer {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.7;
+        }
+      }
+
+      .kite-animation {
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        animation: floatKite 8s ease-in-out infinite;
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .kite-animation::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(45deg, #4caf50, #81c784);
+        border-radius: 50%;
+        animation: pulse 2s ease-in-out infinite;
+      }
+
+      @keyframes floatKite {
+        0%,
+        100% {
+          transform: translate(0, 0) scale(1) rotate(0deg);
+        }
+        25% {
+          transform: translate(30px, -20px) scale(1.1) rotate(90deg);
+        }
+        50% {
+          transform: translate(-20px, -40px) scale(0.9) rotate(180deg);
+        }
+        75% {
+          transform: translate(-40px, 20px) scale(1.1) rotate(270deg);
+        }
+      }
+
+      /* Enhanced Benefits Section */
+      .benefits {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%),
+          radial-gradient(
+            circle at 80% 20%,
+            rgba(102, 126, 234, 0.1) 0%,
+            transparent 50%
+          );
+        position: relative;
+        overflow: hidden;
+      }
+
+      .benefits::before {
+        content: "";
+        position: absolute;
+        top: -30%;
+        left: -20%;
+        width: 800px;
+        height: 800px;
+        background: conic-gradient(
+          from 0deg,
+          rgba(76, 175, 80, 0.05),
+          rgba(102, 126, 234, 0.05),
+          rgba(76, 175, 80, 0.05)
+        );
+        border-radius: 50%;
+        animation: rotate 30s linear infinite;
+      }
+
+      .benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3rem;
+        margin-top: 2rem;
+        position: relative;
+        z-index: 2;
+      }
+
+      .benefit-card {
+        background: var(--surface-color);
+        padding: 3rem 2rem;
+        border-radius: var(--border-radius-lg);
+        box-shadow: var(--shadow-light);
+        transition: var(--transition);
+        height: 100%;
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        position: relative;
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(40px);
+      }
+
+      .benefit-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .benefit-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: var(--gradient-primary);
+        transform: scaleX(0);
+        transition: transform 0.6s ease;
+        transform-origin: left;
+      }
+
+      .benefit-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .benefit-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: var(--shadow-heavy);
+      }
+
+      .benefit-icon {
+        width: 80px;
+        height: 80px;
+        background: var(--gradient-secondary);
+        border-radius: 50%;
+        margin: 0 auto 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        position: relative;
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .benefit-icon::after {
+        content: "";
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        right: -5px;
+        bottom: -5px;
+        border: 2px solid transparent;
+        border-radius: 50%;
+        background: linear-gradient(
+            45deg,
+            var(--primary-color),
+            var(--accent-color)
+          )
+          border-box;
+        mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+        mask-composite: subtract;
+        animation: rotate 8s linear infinite;
+      }
+
+      .benefit-card h3 {
+        text-align: center;
+        margin-bottom: 2rem;
+        color: var(--secondary-color);
+        font-size: 1.4rem;
+        font-weight: 600;
+      }
+
+      .benefit-card ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .benefit-card li {
+        margin-bottom: 1rem;
+        padding-left: 2rem;
+        position: relative;
+        line-height: 1.6;
+        color: var(--text-light);
+        transition: var(--transition);
+      }
+
+      .benefit-card li:hover {
+        color: var(--text-dark);
+        transform: translateX(5px);
+      }
+
+      .benefit-card li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: var(--primary-color);
+        font-weight: bold;
+        font-size: 1.2rem;
+        width: 24px;
+        height: 24px;
+        background: rgba(76, 175, 80, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+      }
+
+      .benefit-card li:hover::before {
+        background: var(--primary-color);
+        color: white;
+        transform: scale(1.1);
+      }
+
+      /* Enhanced Technology Section */
+      .technology {
+        background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.9) 0%,
+            rgba(248, 250, 251, 0.9) 100%
+          ),
+          url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"><defs><pattern id="hexagon" width="60" height="52" patternUnits="userSpaceOnUse"><polygon points="30,2 52,15 52,37 30,50 8,37 8,15" fill="none" stroke="rgba(102,126,234,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23hexagon)"/></svg>');
+        position: relative;
+        overflow: hidden;
+      }
+
+      .technology::after {
+        content: "";
+        position: absolute;
+        top: 20%;
+        right: -10%;
+        width: 400px;
+        height: 400px;
+        background: conic-gradient(
+          from 45deg,
+          rgba(102, 126, 234, 0.1),
+          rgba(76, 175, 80, 0.1),
+          rgba(102, 126, 234, 0.1)
+        );
+        border-radius: 50%;
+        animation: rotate 25s linear infinite reverse;
+      }
+
+      .tech-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 3rem;
+        margin-top: 3rem;
+        position: relative;
+        z-index: 2;
+      }
+
+      @media (max-width: 1400px) {
+        .tech-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 2rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .tech-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .tech-card {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 3rem 2rem;
+        border-radius: var(--border-radius-lg);
+        text-align: center;
+        transition: var(--transition);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(10px);
+        opacity: 0;
+        transform: translateY(30px) rotateY(15deg);
+      }
+
+      .tech-card.visible {
+        opacity: 1;
+        transform: translateY(0) rotateY(0deg);
+      }
+
+      .tech-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(102, 126, 234, 0.1),
+          transparent
+        );
+        transition: left 0.8s ease;
+      }
+
+      .tech-card:hover::before {
+        left: 100%;
+      }
+
+      .tech-card:hover {
+        transform: translateY(-10px) scale(1.03);
+        box-shadow: var(--shadow-heavy);
+      }
+
+      .tech-icon {
+        width: 100px;
+        height: 100px;
+        background: var(--gradient-primary);
+        border-radius: 50%;
+        margin: 0 auto 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 2.5rem;
+        position: relative;
+        animation: float 8s ease-in-out infinite;
+      }
+
+      .tech-icon::after {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
+        border: 3px solid transparent;
+        border-radius: 50%;
+        background: linear-gradient(
+            45deg,
+            var(--accent-color),
+            var(--primary-color)
+          )
+          border-box;
+        mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+        mask-composite: subtract;
+        animation: rotate 12s linear infinite;
+      }
+
+      .tech-card h3 {
+        margin: 1rem 0 1.5rem 0;
+        font-size: 1.3rem;
+        color: var(--secondary-color);
+        font-weight: 600;
+      }
+
+      .tech-card p {
+        font-size: 1rem;
+        line-height: 1.7;
+        color: var(--text-light);
+        flex: 1;
+      }
+
+      /* Enhanced Impact Section */
+      .impact {
+        background: linear-gradient(
+            135deg,
+            #667eea 0%,
+            #764ba2 50%,
+            #667eea 100%
+          ),
+          radial-gradient(
+            circle at 30% 70%,
+            rgba(255, 255, 255, 0.1) 0%,
+            transparent 50%
+          );
+        color: white;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .impact::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="25" cy="25" r="2" fill="rgba(255,255,255,0.1)" opacity="0.8"><animate attributeName="r" values="2;4;2" dur="4s" repeatCount="indefinite"/></circle><circle cx="75" cy="50" r="3" fill="rgba(255,255,255,0.1)" opacity="0.6"><animate attributeName="r" values="3;5;3" dur="6s" repeatCount="indefinite"/></circle><circle cx="50" cy="75" r="1.5" fill="rgba(255,255,255,0.1)" opacity="0.9"><animate attributeName="r" values="1.5;3;1.5" dur="5s" repeatCount="indefinite"/></circle></svg>');
+        animation: float 15s ease-in-out infinite;
+      }
+
+      .impact-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 3rem;
+        margin-top: 3rem;
+        position: relative;
+        z-index: 2;
+      }
+
+      .stat-card {
+        text-align: center;
+        padding: 3rem 2rem;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: var(--border-radius-lg);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+        opacity: 0;
+        transform: scale(0.8) rotateX(45deg);
+      }
+
+      .stat-card.visible {
+        opacity: 1;
+        transform: scale(1) rotateX(0deg);
+      }
+
+      .stat-card::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: conic-gradient(
+          from 0deg,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent
+        );
+        animation: rotate 8s linear infinite;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .stat-card:hover::before {
+        opacity: 1;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-8px) scale(1.05);
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.3);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      }
+
+      .stat-number {
+        font-family: "Orbitron", monospace;
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 900;
+        margin-bottom: 1rem;
+        color: #4caf50;
+        position: relative;
+        z-index: 2;
+        text-shadow: 0 4px 20px rgba(76, 175, 80, 0.5);
+        background: linear-gradient(45deg, #4caf50, #81c784);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .stat-card p {
+        font-size: 1.1rem;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        position: relative;
+        z-index: 2;
+      }
+
+      .stat-card small {
+        font-size: 0.9rem;
+        opacity: 0.8;
+        position: relative;
+        z-index: 2;
+      }
+
+      /* Enhanced Products Section */
+      .products {
+        background: linear-gradient(
+            135deg,
+            #f8f9fa 0%,
+            #ffffff 50%,
+            #f0f4f8 100%
+          ),
+          radial-gradient(
+            circle at 20% 80%,
+            rgba(76, 175, 80, 0.05) 0%,
+            transparent 50%
+          );
+        position: relative;
+        overflow: hidden;
+      }
+
+      .products::before {
+        content: "";
+        position: absolute;
+        bottom: -40%;
+        left: -20%;
+        width: 600px;
+        height: 600px;
+        background: conic-gradient(
+          from 180deg,
+          rgba(102, 126, 234, 0.08),
+          rgba(76, 175, 80, 0.08),
+          rgba(102, 126, 234, 0.08)
+        );
+        border-radius: 50%;
+        animation: rotate 40s linear infinite reverse;
+      }
+
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 3rem;
+        margin-top: 3rem;
+        position: relative;
+        z-index: 2;
+      }
+
+      @media (max-width: 1400px) {
+        .product-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 2rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .product-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .product-card {
+        background: var(--surface-color);
+        padding: 3rem 2rem;
+        border-radius: var(--border-radius-lg);
+        box-shadow: var(--shadow-light);
+        transition: var(--transition);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        position: relative;
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(40px) rotateY(-15deg);
+      }
+
+      .product-card.visible {
+        opacity: 1;
+        transform: translateY(0) rotateY(0deg);
+      }
+
+      .product-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: var(--gradient-primary);
+        transform: scaleX(0);
+        transition: transform 0.6s ease;
+        transform-origin: left;
+      }
+
+      .product-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .product-card::after {
+        content: "";
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(
+          45deg,
+          rgba(102, 126, 234, 0.1),
+          rgba(76, 175, 80, 0.1)
+        );
+        border-radius: 50%;
+        opacity: 0;
+        transition: var(--transition);
+        animation: pulse 3s ease-in-out infinite;
+      }
+
+      .product-card:hover::after {
+        opacity: 1;
+        transform: scale(1.2);
+      }
+
+      .product-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: var(--shadow-heavy);
+      }
+
+      .product-card h3 {
+        margin-bottom: 2rem;
+        font-size: 1.4rem;
+        color: var(--secondary-color);
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .product-card h3::before {
+        content: "";
+        width: 8px;
+        height: 40px;
+        background: var(--gradient-primary);
+        border-radius: 4px;
+        flex-shrink: 0;
+      }
+
+      .product-card p {
+        font-size: 1rem;
+        line-height: 1.7;
+        color: var(--text-light);
+        flex: 1;
+      }
+
+      /* Enhanced Roadmap Section */
+      .roadmap {
+        background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.95) 0%,
+            rgba(248, 250, 251, 0.95) 100%
+          ),
+          url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="circuit" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M0,10 L10,10 L10,0 M10,10 L20,10 M10,10 L10,20" stroke="rgba(102,126,234,0.1)" stroke-width="1" fill="none"/></pattern></defs><rect width="100%" height="100%" fill="url(%23circuit)"/></svg>');
+        position: relative;
+        overflow: hidden;
+      }
+
+      .timeline {
+        position: relative;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .timeline::after {
+        content: "";
+        position: absolute;
+        width: 6px;
+        background: var(--gradient-primary);
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        margin-left: -3px;
+        border-radius: 3px;
+        box-shadow: 0 0 20px rgba(76, 175, 80, 0.3);
+      }
+
+      .timeline-item {
+        padding: 20px 60px;
+        position: relative;
+        background-color: inherit;
+        width: 50%;
+        opacity: 0;
+        transform: translateX(-30px);
+        transition: var(--transition);
+      }
+
+      .timeline-item.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .timeline-item::after {
+        content: "";
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        right: -20px;
+        background: var(--gradient-primary);
+        border: 6px solid white;
+        top: 30px;
+        border-radius: 50%;
+        z-index: 1;
+        box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+        animation: pulse 2s ease-in-out infinite;
+      }
+
+      .left {
+        left: 0;
+      }
+
+      .right {
+        left: 50%;
+      }
+
+      .right::after {
+        left: -20px;
+      }
+
+      .right {
+        transform: translateX(30px);
+      }
+
+      .right.visible {
+        transform: translateX(0);
+      }
+
+      .timeline-content {
+        padding: 30px 40px;
+        background: var(--surface-color);
+        position: relative;
+        border-radius: var(--border-radius-lg);
+        box-shadow: var(--shadow-medium);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        transition: var(--transition);
+        overflow: hidden;
+      }
+
+      .timeline-content::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: var(--gradient-primary);
+      }
+
+      .timeline-content:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: var(--shadow-heavy);
+      }
+
+      .timeline-content h3 {
+        font-size: 1.3rem;
+        color: var(--secondary-color);
+        margin-bottom: 1rem;
+        font-weight: 600;
+      }
+
+      .timeline-content p {
+        color: var(--text-light);
+        line-height: 1.7;
+      }
+
+      /* Enhanced Contact Section */
+      .contact {
+        background: linear-gradient(
+            135deg,
+            #2c5530 0%,
+            #1e3a24 50%,
+            #2c5530 100%
+          ),
+          radial-gradient(
+            circle at 70% 30%,
+            rgba(76, 175, 80, 0.2) 0%,
+            transparent 50%
+          );
+        color: white;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .contact::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="rgba(76,175,80,0.3)"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" repeatCount="indefinite"/></circle><circle cx="80" cy="60" r="1.5" fill="rgba(76,175,80,0.3)"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="4s" repeatCount="indefinite"/></circle><circle cx="40" cy="80" r="0.8" fill="rgba(76,175,80,0.3)"><animate attributeName="opacity" values="0.3;0.8;0.3" dur="2.5s" repeatCount="indefinite"/></circle></svg>');
+        animation: float 12s ease-in-out infinite;
+      }
+
+      .contact-form {
+        max-width: 700px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+      }
+
+      .form-group {
+        margin-bottom: 2rem;
+        text-align: left;
+        position: relative;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.8rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1.1rem;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 18px 24px;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: var(--border-radius);
+        font-size: 1rem;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        backdrop-filter: blur(10px);
+        transition: var(--transition);
+      }
+
+      .form-group input::placeholder,
+      .form-group textarea::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        background: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 0 20px rgba(76, 175, 80, 0.3);
+        transform: translateY(-2px);
+      }
+
+      .submit-btn {
+        background: var(--gradient-secondary);
+        color: white;
+        padding: 18px 40px;
+        border: none;
+        border-radius: 50px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+      }
+
+      .submit-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.8s;
+      }
+
+      .submit-btn:hover::before {
+        left: 100%;
+      }
+
+      .submit-btn:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 15px 35px rgba(76, 175, 80, 0.5);
+      }
+
+      /* Enhanced Footer */
+      .footer {
+        background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%),
+          radial-gradient(
+            circle at 50% 50%,
+            rgba(76, 175, 80, 0.1) 0%,
+            transparent 50%
+          );
+        color: white;
+        text-align: center;
+        padding: 4rem 0 2rem 0;
+        position: relative;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .footer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--gradient-primary);
+      }
+
+      .footer p {
+        margin-bottom: 1rem;
+        opacity: 0.8;
+        transition: var(--transition);
+      }
+
+      .footer p:hover {
+        opacity: 1;
+        transform: translateY(-2px);
+      }
+
+      /* Enhanced Mobile Responsive */
+      @media (max-width: 1000px) {
+        .benefits-grid {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .about-content {
+          grid-template-columns: 1fr;
+          gap: 3rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .menu-toggle {
+          display: flex;
+        }
+
+        .hero h1 {
+          font-size: clamp(2.5rem, 8vw, 3.5rem);
+        }
+
+        .hero-subtitle {
+          font-size: clamp(1.1rem, 4vw, 1.4rem);
+        }
+
+        .cta-group {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .section {
+          padding: 80px 0;
+        }
+
+        .timeline::after {
+          left: 31px;
+        }
+
+        .timeline-item {
+          width: 100%;
+          padding-left: 80px;
+          padding-right: 25px;
+        }
+
+        .timeline-item::before {
+          left: 60px;
+          border: medium solid white;
+          border-width: 10px 10px 10px 0;
+          border-color: transparent white transparent transparent;
+        }
+
+        .left::after,
+        .right::after {
+          left: 15px;
+        }
+
+        .right {
+          left: 0%;
+        }
+
+        .floating-element {
+          display: none;
+        }
+
+        .benefit-card,
+        .tech-card,
+        .product-card {
+          transform: none !important;
+        }
+      }
+
+      /* Enhanced scroll animations */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: var(--transition);
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .slide-in-left {
+        opacity: 0;
+        transform: translateX(-50px);
+        transition: var(--transition);
+      }
+
+      .slide-in-left.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .slide-in-right {
+        opacity: 0;
+        transform: translateX(50px);
+        transition: var(--transition);
+      }
+
+      .slide-in-right.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .scale-in {
+        opacity: 0;
+        transform: scale(0.8);
+        transition: var(--transition);
+      }
+
+      .scale-in.visible {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      /* Loading animation */
+      .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.8s ease, visibility 0.8s ease;
+      }
+
+      .loading-overlay.hidden {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .loader {
+        width: 80px;
+        height: 80px;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        border-top: 4px solid #4caf50;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Scroll indicator */
+      .scroll-indicator {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.1);
+        z-index: 1001;
+      }
+
+      .scroll-progress {
+        height: 100%;
+        background: var(--gradient-primary);
+        width: 0%;
+        transition: width 0.1s ease;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="loader"></div>
+    </div>
+
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-indicator">
+      <div class="scroll-progress" id="scrollProgress"></div>
+    </div>
+
+    <!-- Particle System -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+      <nav class="nav">
+        <a href="#home" class="logo">Breath For Change</a>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#benefits">Who Benefits</a></li>
+          <li><a href="#technology">Technology</a></li>
+          <li><a href="#impact">Impact</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#roadmap">Roadmap</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="menu-toggle" id="menuToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="floating-element kite-float"></div>
+      <div class="floating-element balloon-float"></div>
+      <div class="floating-element particle-float"></div>
+      <div class="hero-content">
+        <h1>Introducing SkyVac</h1>
+        <p class="hero-subtitle">
+          Sky scrubbing redefined - Harnessing AI and solar sails to vacuum
+          carbon from the atmosphere and power a new green economy
+        </p>
+        <div class="cta-group">
+          <a href="#about" class="cta-button">
+            <span>Discover SkyVac</span>
+            <span>🚀</span>
+          </a>
+          <a href="#contact" class="cta-button cta-secondary">
+            <span>Join the Mission</span>
+            <span>🌱</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+      <div class="section">
+        <h2 class="section-title fade-in">
+          SkyVac: Revolutionary Air Cleaning Technology
+        </h2>
+        <div class="about-content">
+          <div class="about-text slide-in-left">
+            <h3>Our Mission</h3>
+            <p>
+              Breath For Change is pioneering the future of atmospheric cleaning
+              with SkyVac - our innovative fleet of AI-piloted kites and
+              balloons. Our technology captures soot, dust, and CO₂ directly
+              from the troposphere, transforming pollution into valuable
+              products while powering sustainable communities.
+            </p>
+
+            <h3>How SkyVac Works</h3>
+            <p>
+              Our self-powered SkyVac platforms use flexible solar panels and
+              advanced onboard energy systems. Each unit employs ultra-light
+              electrostatic grids to attract and capture particles, with AI
+              navigation ensuring maximum air-cleaning efficiency while
+              maintaining safe flight patterns.
+            </p>
+          </div>
+          <div class="about-visual slide-in-right">
+            <div class="kite-animation"></div>
+            <div
+              class="kite-animation"
+              style="animation-delay: -2s; top: 60%; left: 70%"
+            ></div>
+            <div
+              class="kite-animation"
+              style="
+                animation-delay: -4s;
+                top: 30%;
+                left: 20%;
+                background: rgba(76, 175, 80, 0.4);
+              "
+            ></div>
+            <div style="text-align: center; z-index: 2; position: relative">
+              <h3>SkyVac Platform</h3>
+              <p>AI-Powered Kites & Balloons</p>
+              <p>Continuous 24/7 Operation</p>
+              <small style="opacity: 0.8"
+                >🎈 Balloons + 🪁 Kites = Clean Air</small
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Who Benefits Section -->
+    <section id="benefits" class="benefits">
+      <div class="section">
+        <h2 class="section-title fade-in">Who SkyVac Helps</h2>
+        <div class="benefits-grid">
+          <div class="benefit-card fade-in">
+            <div class="benefit-icon">👥</div>
+            <h3>People & Communities</h3>
+            <ul>
+              <li>
+                <strong>Urban & rural residents</strong> suffering from smoke,
+                dust, and air pollution
+              </li>
+              <li>
+                <strong>Health-conscious families</strong> wanting cleaner air
+                in schools, hospitals, and outdoor workplaces
+              </li>
+              <li>
+                <strong>Local governments</strong> with new responsibilities and
+                employment opportunities
+              </li>
+              <li>
+                <strong>Entrepreneurs & small business owners</strong> running
+                franchise operations and creating income streams
+              </li>
+            </ul>
+          </div>
+          <div class="benefit-card fade-in">
+            <div class="benefit-icon">🌍</div>
+            <h3>Environment</h3>
+            <ul>
+              <li>
+                <strong>Actively reduces atmospheric CO₂</strong> by targeting
+                pollution hotspots
+              </li>
+              <li>
+                <strong>Cleans harmful particulates</strong> from the air to
+                help slow climate change
+              </li>
+              <li>
+                <strong>Improves local air quality</strong> in cities and
+                industrial areas
+              </li>
+              <li>
+                <strong>Supports biodiversity</strong> by reducing
+                carbon-related stress on ecosystems
+              </li>
+              <li>
+                <strong>Creates circular economy</strong> by turning captured
+                carbon into sustainable materials
+              </li>
+            </ul>
+          </div>
+          <div class="benefit-card fade-in">
+            <div class="benefit-icon">💰</div>
+            <h3>Economy</h3>
+            <ul>
+              <li>
+                <strong>New green jobs</strong> in technology, manufacturing,
+                and maintenance
+              </li>
+              <li>
+                <strong>Revenue streams</strong> from carbon credits,
+                construction materials, and franchise operations
+              </li>
+              <li>
+                <strong>Cost savings</strong> for businesses using captured
+                carbon materials
+              </li>
+              <li>
+                <strong>Investment opportunities</strong> in clean technology
+                and sustainable infrastructure
+              </li>
+              <li>
+                <strong>Economic resilience</strong> through diversified
+                environmental services
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section id="technology" class="technology">
+      <div class="section">
+        <h2 class="section-title fade-in">SkyVac Technology Breakthrough</h2>
+        <div class="tech-grid">
+          <div class="tech-card fade-in">
+            <div class="tech-icon">⚡</div>
+            <h3>Ultra-Light Electrostatic Grids</h3>
+            <p>
+              Flexible, lightweight meshes that attract and capture tiny
+              particles like soot, dust, and CO₂ using minimal energy.
+            </p>
+          </div>
+          <div class="tech-card fade-in">
+            <div class="tech-icon">🤖</div>
+            <h3>AI-Powered Navigation</h3>
+            <p>
+              Advanced algorithms steer SkyVac units to chase pollution hotspots
+              in real time, maximizing air-cleaning efficiency.
+            </p>
+          </div>
+          <div class="tech-card fade-in">
+            <div class="tech-icon">☀️</div>
+            <h3>Self-Powered Platforms</h3>
+            <p>
+              Flexible solar panels and onboard energy storage ensure SkyVac
+              operates continuously during cloudy or night periods.
+            </p>
+          </div>
+          <div class="tech-card fade-in">
+            <div class="tech-icon">📡</div>
+            <h3>Lightweight Mesh Networks</h3>
+            <p>
+              SkyVac platforms communicate through lightweight mesh networks,
+              enabling real-time data exchange and coordinated operations.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section id="impact" class="impact">
+      <div class="section">
+        <h2 class="section-title fade-in">SkyVac Global Impact Goals</h2>
+        <div class="impact-stats">
+          <div class="stat-card fade-in">
+            <div class="stat-number">100kg</div>
+            <p>CO₂ captured per SkyVac unit per day</p>
+            <small style="opacity: 0.8">Target: 36.5 tons/year per unit</small>
+          </div>
+          <div class="stat-card fade-in">
+            <div class="stat-number">1000+</div>
+            <p>SkyVac units deployed by 2027</p>
+            <small style="opacity: 0.8">36,500 tons CO₂/year total</small>
+          </div>
+          <div class="stat-card fade-in">
+            <div class="stat-number">50M</div>
+            <p>People benefiting from cleaner air</p>
+            <small style="opacity: 0.8">Across urban & industrial areas</small>
+          </div>
+          <div class="stat-card fade-in">
+            <div class="stat-number">$2B</div>
+            <p>Market value potential by 2030</p>
+            <small style="opacity: 0.8">Revenue from credits & materials</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products">
+      <div class="section">
+        <h2 class="section-title fade-in">
+          What SkyVac Creates from Captured Carbon
+        </h2>
+        <div class="product-grid">
+          <div class="product-card fade-in">
+            <h3>🧱 Carbon-Infused Concrete & Bricks</h3>
+            <p>
+              Transform captured CO₂ into durable construction materials,
+              reducing carbon footprint while creating valuable building
+              products for sustainable infrastructure.
+            </p>
+          </div>
+          <div class="product-card fade-in">
+            <h3>💎 Carbon Credits & Certificates</h3>
+            <p>
+              Generate verified carbon credits through SkyVac's measurable
+              atmospheric cleaning process, creating new revenue streams for
+              environmental impact.
+            </p>
+          </div>
+          <div class="product-card fade-in">
+            <h3>🔋 Advanced Carbon Materials</h3>
+            <p>
+              Process captured carbon into specialized materials for energy
+              storage, water filtration, and industrial applications.
+            </p>
+          </div>
+          <div class="product-card fade-in">
+            <h3>🌱 Agricultural Enhancers</h3>
+            <p>
+              Convert captured particulates into soil amendments and
+              fertilizers, completing the circular economy cycle.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section id="roadmap" class="roadmap">
+      <div class="section">
+        <h2 class="section-title fade-in">SkyVac Development Roadmap</h2>
+        <div class="timeline">
+          <div class="timeline-item left fade-in">
+            <div class="timeline-content">
+              <h3>Q3 2025 - SkyVac Prototype Development</h3>
+              <p>
+                Complete initial SkyVac kite and balloon prototypes with basic
+                electrostatic capture systems. Test flight capabilities and
+                energy efficiency.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item right fade-in">
+            <div class="timeline-content">
+              <h3>Q4 2025 - AI Integration</h3>
+              <p>
+                Implement AI navigation systems in SkyVac units and begin mesh
+                network testing. Optimize particle capture algorithms.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item left fade-in">
+            <div class="timeline-content">
+              <h3>Q2 2026 - SkyVac Pilot Program Launch</h3>
+              <p>
+                Deploy 50 SkyVac units in urban test areas. Establish carbon
+                processing partnerships and begin product development.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item right fade-in">
+            <div class="timeline-content">
+              <h3>Q4 2026 - Commercial Scale</h3>
+              <p>
+                Scale to 500 SkyVac units across multiple cities. Launch carbon
+                credit program and construction material sales.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item left fade-in">
+            <div class="timeline-content">
+              <h3>2027+ - Global SkyVac Expansion</h3>
+              <p>
+                Deploy 1000+ SkyVac units worldwide. Establish franchise
+                operations and achieve carbon neutrality goals.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+      <div class="section">
+        <h2 class="section-title fade-in">Join the Movement</h2>
+        <p class="fade-in" style="margin-bottom: 2rem; font-size: 1.2rem">
+          Ready to breathe cleaner air? Partner with us to deploy SkyVac
+          technology or learn more about our atmospheric cleaning solution.
+        </p>
+        <div class="contact-form fade-in">
+          <form id="contactForm">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+            <div class="form-group">
+              <label for="organization">Organization</label>
+              <input type="text" id="organization" name="organization" />
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="5"
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="section">
+        <p>
+          &copy; 2025 Breath For Change. Revolutionizing atmospheric cleaning
+          with SkyVac technology for a sustainable future.
+        </p>
+        <p>
+          Contact: info@breathforchange.org | Follow SkyVac's progress on social
+          media
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      // Loading animation
+      window.addEventListener("load", () => {
+        const loadingOverlay = document.getElementById("loadingOverlay");
+        setTimeout(() => {
+          loadingOverlay.classList.add("hidden");
+        }, 1000);
+      });
+
+      // Particle system
+      function createParticles() {
+        const particlesContainer = document.getElementById("particles");
+        const particleCount = 50;
+
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement("div");
+          particle.className = "particle";
+          particle.style.left = Math.random() * 100 + "%";
+          particle.style.animationDelay = Math.random() * 20 + "s";
+          particle.style.animationDuration = Math.random() * 10 + 15 + "s";
+          particlesContainer.appendChild(particle);
+        }
+      }
+
+      // Scroll progress indicator
+      function updateScrollProgress() {
+        const scrollProgress = document.getElementById("scrollProgress");
+        const scrollTop = window.pageYOffset;
+        const documentHeight =
+          document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / documentHeight) * 100;
+        scrollProgress.style.width = scrollPercent + "%";
+      }
+
+      // Enhanced smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          const headerHeight = document.querySelector(".header").offsetHeight;
+          const targetPosition = target.offsetTop - headerHeight;
+
+          window.scrollTo({
+            top: targetPosition,
+            behavior: "smooth",
+          });
+        });
+      });
+
+      // Enhanced scroll animations with staggered effects
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => {
+              entry.target.classList.add("visible");
+            }, index * 100); // Staggered animation
+          }
+        });
+      }, observerOptions);
+
+      // Enhanced header behavior
+      let lastScrollY = window.scrollY;
+      window.addEventListener("scroll", () => {
+        const header = document.getElementById("header");
+        const scrollY = window.scrollY;
+
+        if (scrollY > 100) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+
+        // Hide/show header based on scroll direction
+        if (scrollY > lastScrollY && scrollY > 200) {
+          header.style.transform = "translateY(-100%)";
+        } else {
+          header.style.transform = "translateY(0)";
+        }
+
+        lastScrollY = scrollY;
+        updateScrollProgress();
+      });
+
+      // Enhanced contact form handling with better UX
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const formData = new FormData(this);
+          const data = {};
+          formData.forEach((value, key) => {
+            data[key] = value;
+          });
+
+          const submitBtn = this.querySelector(".submit-btn");
+          const originalText = submitBtn.textContent;
+
+          // Add loading state
+          submitBtn.innerHTML = "<span>Sending...</span> <span>⚡</span>";
+          submitBtn.disabled = true;
+          submitBtn.style.background =
+            "linear-gradient(135deg, #667eea, #764ba2)";
+
+          // Simulate form submission with better feedback
+          setTimeout(() => {
+            submitBtn.innerHTML = "<span>Message Sent!</span> <span>✅</span>";
+            submitBtn.style.background =
+              "linear-gradient(135deg, #4CAF50, #45a049)";
+
+            // Create success particles
+            createSuccessParticles(submitBtn);
+
+            // Reset form
+            this.reset();
+
+            setTimeout(() => {
+              submitBtn.textContent = originalText;
+              submitBtn.disabled = false;
+              submitBtn.style.background = "";
+            }, 3000);
+          }, 2000);
+        });
+
+      // Success particles animation
+      function createSuccessParticles(element) {
+        const rect = element.getBoundingClientRect();
+        for (let i = 0; i < 10; i++) {
+          const particle = document.createElement("div");
+          particle.style.position = "fixed";
+          particle.style.left = rect.left + rect.width / 2 + "px";
+          particle.style.top = rect.top + rect.height / 2 + "px";
+          particle.style.width = "6px";
+          particle.style.height = "6px";
+          particle.style.background = "#4CAF50";
+          particle.style.borderRadius = "50%";
+          particle.style.pointerEvents = "none";
+          particle.style.zIndex = "9999";
+          document.body.appendChild(particle);
+
+          const angle = (Math.PI * 2 * i) / 10;
+          const velocity = 150;
+          const vx = Math.cos(angle) * velocity;
+          const vy = Math.sin(angle) * velocity;
+
+          particle.animate(
+            [
+              { transform: "translate(0, 0) scale(1)", opacity: 1 },
+              { transform: `translate(${vx}px, ${vy}px) scale(0)`, opacity: 0 },
+            ],
+            {
+              duration: 1000,
+              easing: "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+            }
+          ).onfinish = () => particle.remove();
+        }
+      }
+
+      // Enhanced interactive elements with 3D effects
+      document
+        .querySelectorAll(".tech-card, .product-card, .benefit-card")
+        .forEach((card) => {
+          card.addEventListener("mouseenter", function (e) {
+            const rect = this.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            const mouseX = e.clientX - centerX;
+            const mouseY = e.clientY - centerY;
+
+            const rotateX = (mouseY / rect.height) * 10;
+            const rotateY = (mouseX / rect.width) * -10;
+
+            this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px) scale(1.02)`;
+          });
+
+          card.addEventListener("mouseleave", function () {
+            this.style.transform =
+              "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)";
+          });
+
+          card.addEventListener("mousemove", function (e) {
+            const rect = this.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            const mouseX = e.clientX - centerX;
+            const mouseY = e.clientY - centerY;
+
+            const rotateX = (mouseY / rect.height) * 5;
+            const rotateY = (mouseX / rect.width) * -5;
+
+            this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px) scale(1.02)`;
+          });
+        });
+
+      // Enhanced counter animation with easing
+      function animateCounter(element, target, duration = 2000) {
+        let start = 0;
+        const startTime = performance.now();
+
+        function updateCounter(currentTime) {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+
+          // Easing function (ease-out cubic)
+          const easeOut = 1 - Math.pow(1 - progress, 3);
+          const current = Math.floor(start + (target - start) * easeOut);
+
+          const suffix = element.textContent.includes("kg")
+            ? "kg"
+            : element.textContent.includes("+")
+            ? "+"
+            : element.textContent.includes("M")
+            ? "M"
+            : element.textContent.includes("B")
+            ? "B"
+            : "";
+
+          element.textContent = current + suffix;
+
+          if (progress < 1) {
+            requestAnimationFrame(updateCounter);
+          } else {
+            element.textContent = target + suffix;
+          }
+        }
+
+        requestAnimationFrame(updateCounter);
+      }
+
+      // Enhanced stats observer with intersection
+      const statsObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const number = entry.target.querySelector(".stat-number");
+              const text = number.textContent;
+
+              if (text.includes("kg")) {
+                animateCounter(number, 100);
+              } else if (text.includes("+")) {
+                animateCounter(number, 1000);
+              } else if (text.includes("M")) {
+                animateCounter(number, 50);
+              } else if (text.includes("B")) {
+                animateCounter(number, 2);
+              }
+
+              statsObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+
+      // Initialize everything when DOM is loaded
+      document.addEventListener("DOMContentLoaded", function () {
+        // Create particles
+        createParticles();
+
+        // Observe all fade-in elements
+        document
+          .querySelectorAll(
+            ".fade-in, .slide-in-left, .slide-in-right, .scale-in, .benefit-card, .tech-card, .product-card, .stat-card, .timeline-item, .section-title, .about-text, .about-visual"
+          )
+          .forEach((el) => {
+            observer.observe(el);
+          });
+
+        // Observe stat cards
+        document.querySelectorAll(".stat-card").forEach((card) => {
+          statsObserver.observe(card);
+        });
+
+        // Add some initial delay to animations
+        setTimeout(() => {
+          document.body.classList.add("loaded");
+        }, 500);
+      });
+
+      // Mobile menu toggle
+      document
+        .getElementById("menuToggle")
+        .addEventListener("click", function () {
+          this.classList.toggle("active");
+          // Add mobile menu functionality here if needed
+        });
+
+      // Keyboard navigation
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          // Close mobile menu or any modals
+          document.getElementById("menuToggle").classList.remove("active");
+        }
+      });
+
+      // Performance optimization: Throttle scroll events
+      let ticking = false;
+      function updateOnScroll() {
+        updateScrollProgress();
+        ticking = false;
+      }
+
+      window.addEventListener("scroll", function () {
+        if (!ticking) {
+          requestAnimationFrame(updateOnScroll);
+          ticking = true;
+        }
+      });
+    </script>
+  </body>
+</html>
